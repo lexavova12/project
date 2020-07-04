@@ -1,0 +1,62 @@
+<div class="button-bar">
+    <div class="form-control">
+        <input class="input-serch" type="text" placeholder="Поиск..." [(ngModel)]="search">
+    </div>
+    <div class="app__button">
+     <!--   <button class="btn btn-add"
+        (click)="addUser($event)">Добавить задачу</button>-->
+    </div>
+</div>
+<div class="app__user">
+    <div class="app__user-list">
+        <table>
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Заказчик</th>
+                <th>Адрес</th>
+                <th>Дата заявки</th>
+                <th>Выполнена</th>
+                  <th>Выполняет</th>
+                <th>События</th>
+                </tr>
+            </thead>
+                <tbody *ngFor="let task of tasks; let idx = index;">
+                    <tr>
+                        <td>{{ idx + 1 }}</td>
+                        <td>{{ task.customer }}</td>
+                        <td>{{ task.adress}}</td>
+                        <td>{{ task.dateStart}}</td>
+                        <td class="status"><div *ngIf="task.isDone; then thenBlock else elseBlock"></div>
+                          <ng-template #thenBlock><img src="../../../../../assets/images/done.png" /></ng-template>
+                          <ng-template #elseBlock><img src="../../../../../assets/images/failed.png"  /></ng-template>
+                        </td>
+                        <td>{{ task.executor }}</td>
+                        <td>
+                            <a class="btn btn-link open"
+                            [routerLink]="['/admin','task', task.id, 'edit']"
+                            (click)="showTask(task)"> Открыть</a>
+                            <a (click)="removeTask(task.id)">Удалить</a>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+        <div  class="app__user-form">
+          <div *ngIf="visableTask; then taskForm else editTaskForm"></div>
+          <ng-template #taskForm><app-task-form></app-task-form></ng-template>
+          <ng-template #editTaskForm><app-edit-task [task]="choosenTask" (onUpDate)="OnUpdate($event)"></app-edit-task>
+            <app-map [address]="choosenAddress"></app-map>
+          </ng-template>
+            <!--<app-task-form></app-task-form>-->
+        </div>
+   <!-- <div  class="app__user-form">
+
+        <div *ngIf="visableTask">
+            <app-task-form>
+            </app-task-form></div>
+
+        <div *ngIf="!visableTask">
+                <app-edit-task [task]="choosenTask" ]></app-edit-task></div>
+    </div>-->
+</div>

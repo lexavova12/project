@@ -1,0 +1,27 @@
+<nav class="navbar bg-primary" *ngIf="auth.isAuthenticated()">
+    <h1>
+        <a routerLink='/'>Project admin</a>
+    </h1>
+    <ul>
+        <li routerLinkActive="active" >
+            <a [routerLink]="['/admin', 'dashboard']">Главная</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'user']">Пользователи</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'task']">Задачи</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'graph']">График</a>
+        </li>
+        <li>
+            <a href="#" (click)="logout($event)">Выйти</a>
+        </li>
+    </ul>
+</nav>
+
+<div>
+    <router-outlet></router-outlet>
+</div>
+

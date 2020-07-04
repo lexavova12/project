@@ -1,0 +1,69 @@
+<div class="container">
+    <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+      <h1 class="card__logo">Добавление пользователя</h1>
+      <div class="form-control">
+        <label class="form-control__text">Имя</label>
+        <input class="form-control__input" type="text" placeholder="Ваше имя ...." formControlName="name">
+        <div class="validation" *ngIf="form.get('name').invalid && form.get('name').touched">
+          <div class="validation__small-text" *ngIf="form.get('name').errors.required">
+            Поле имя не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="form-control__text">Фамилия</label>
+        <input class="form-control__input" type="text" placeholder="Фамилия..." formControlName="surname">
+        <div class="validation" *ngIf="form.get('surname').invalid && form.get('surname').touched">
+          <div class="validation__small-text" *ngIf="form.get('surname').errors.required">
+            Поле фамилия не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="form-control__text">Телефон</label>
+        <input class="form-control__input" type="text" placeholder="Телефон..." formControlName="phone">
+        <div class="validation" *ngIf="form.get('phone').invalid && form.get('phone').touched">
+          <div class="validation__small-text" *ngIf="form.get('phone').errors.required">
+            Поле телефон не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control" formGroupName="position">
+        <label class="form-control__text">Тип учетной записи</label>
+
+        <select class="form-control__select" formControlName="type">
+          <option value="Администратор">Администратор</option>
+          <option value="Оператор">Оператор</option>
+          <option value="Рабочий">Рабочий</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <h2>Адрес</h2>
+
+        <div class="form-control" formGroupName="address">
+          <label class="form-control__text">Город</label>
+
+          <select class="form-control__select" formControlName="country">
+            <option value="mg">Могилев</option>
+            <option value="mn">Минск</option>
+            <option value="gm">Гомель</option>
+            <option value="br">Брест</option>
+            <option value="vt">Витебск</option>
+            <option value="gк">Гродно</option>
+          </select>
+        </div>
+
+        <div class="form-control">
+          <label class="form-control__text">Адресс</label>
+          <input class="form-control__input" type="text" formControlName="street" placeholder="Адрес....">
+        </div>
+      </div>
+      <input id="userpic" type="hidden" formControlName="userpic">
+      <input id="file" (change)="compress($event)"   type="file" accept="image/*">
+      <button class="btn" [disabled]="form.invalid" type="submit">Добавить</button>
+    </form>
+  </div>

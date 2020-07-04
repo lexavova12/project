@@ -1,0 +1,64 @@
+<div class="container">
+    <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+      <h1 class="card__logo">Добавление задачи</h1>
+      <div class="form-control">
+        <label class="form-control__text">Заказчик</label>
+        <input class="form-control__input" type="text" placeholder="ФИО заказчика ..." formControlName="customer">
+        <div class="validation" *ngIf="form.get('customer').invalid && form.get('customer').touched">
+          <div class="validation__small-text" *ngIf="form.get('customer').errors.required">
+            Поле заказчика не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="form-control__text">Название задания</label>
+        <input class="form-control__input" type="text" placeholder="Название задания ..." formControlName="name">
+        <div class="validation" *ngIf="form.get('name').invalid && form.get('name').touched">
+          <div class="validation__small-text" *ngIf="form.get('name').errors.required">
+            Поле название задания не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="form-control__text">Телефон</label>
+        <input class="form-control__input" type="text" placeholder="Телефон..." formControlName="phone">
+        <div class="validation" *ngIf="form.get('phone').invalid && form.get('phone').touched">
+          <div class="validation__small-text" *ngIf="form.get('phone').errors.required">
+            Поле телефон не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="form-control__text">Адрес заказчика</label>
+        <input class="form-control__input" type="text" placeholder="Адрес заказчика..." formControlName="adress">
+        <div class="validation" *ngIf="form.get('adress').invalid && form.get('adress').touched">
+          <div class="validation__small-text" *ngIf="form.get('adress').errors.required">
+            Поле адрес заказчика не может быть пустым
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="form-control__text">Дата принятие заявки</label>
+        <input class="form-control__input" type="date" formControlName="dateStart">
+      </div>
+
+      <div class="form-control">
+       <select  class="form-control" formControlName="executor">
+          <option id="markerType" [ngValue]="param.name" *ngFor="let param of perem">{{param.name}}</option>
+       </select>
+      </div>
+
+      <div class="form-control">
+        <label>
+          <input type="checkbox" formControlName="isDone"> Выполнена задача
+        </label>
+       </div>
+
+      <button class="btn" [disabled]="form.invalid" type="submit">Добавить</button>
+    </form>
+  </div>
+
