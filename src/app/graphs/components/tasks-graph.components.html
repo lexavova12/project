@@ -1,5 +1,24 @@
 <div class="wrapper">
-    <chart 
+    <div class="filter">
+        <dropdown
+            #dropdownYear
+            class="searchFilters"
+            [options]="allYears"
+            placeholder="Выберите год"
+            [(selectedValue)]="selectedYear"
+            (onChange)="dateChanged()">
+        </dropdown>
+        <dropdown
+            #dropdownMonth
+            class="searchFilters"
+            [options]="allMonths"
+            placeholder="Выберите месяц"
+            [(selectedValue)]="selectedMonth"
+            (onChange)="dateChanged()">
+        </dropdown>
+    </div>
+    <chart
+        *ngIf="!!chart"
         [chart]="chart"
     ></chart>
 </div>
